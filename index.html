@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=69">
+  <link rel="stylesheet" href="styles.css?v=71">
 </head>
 <body>
   <div class="wrap">
@@ -26,7 +26,10 @@
         <a href="#tools">Tools</a>
         <a href="#experience">Experience</a>
       </nav>
-      <a href="#contact" class="nav-email js-email">Email me</a>
+      <div class="folio-actions">
+        <a href="assets/Sami-Siddiqui-Resume.pdf" class="nav-resume" download><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></svg>Résumé</a>
+        <a href="#contact" class="nav-email js-email">Email me</a>
+      </div>
     </header>
 
     <main id="top">
@@ -83,8 +86,8 @@
             <dt>Start</dt><dd>Available now</dd>
             <dt>Looking for</dt><dd>Technical Director / Head of Engineering</dd>
           </dl>
-          <a class="btn js-email" href="#contact">Email me</a>
-          <p class="addr"><span class="js-email-text">asamisdd+hire (at) gmail (dot) com</span> · <a href="https://www.linkedin.com/in/samisdd/" target="_blank" rel="noopener">LinkedIn</a> · <a href="assets/Sami-Siddiqui-Resume.pdf" download>Résumé (PDF)</a><br><a href="https://calendly.com/asamisdd/30min" target="_blank" rel="noopener">Book a 30-min call</a></p>
+          <div class="btn-row"><a class="btn js-email" href="#contact">Email me</a><a class="btn btn-alt" href="https://calendly.com/asamisdd/30min" target="_blank" rel="noopener">Book call</a></div>
+          <p class="addr"><span class="js-email-text">asamisdd+hire (at) gmail (dot) com</span> · <a href="https://www.linkedin.com/in/samisdd/" target="_blank" rel="noopener">LinkedIn</a></p>
         </aside>
         </div>
         </div>
@@ -423,8 +426,8 @@
       </div>
       <div class="close-cta">
         <a class="btn js-email" href="#contact">Email me</a>
+        <a class="btn btn-alt" href="https://calendly.com/asamisdd/30min" target="_blank" rel="noopener">Book call</a>
         <span class="addr"><span class="js-email-text">asamisdd+hire (at) gmail (dot) com</span></span>
-        <a class="close-link" href="https://calendly.com/asamisdd/30min" target="_blank" rel="noopener">Book a 30-min call</a>
         <a class="close-link" href="https://www.linkedin.com/in/samisdd/" target="_blank" rel="noopener">Connect on LinkedIn</a>
         <a class="close-link" href="assets/Sami-Siddiqui-Resume.pdf" download>Download résumé (PDF)</a>
       </div>
@@ -436,6 +439,7 @@
   </footer>
 
   <a class="btn btn-float js-email" href="#contact" tabindex="-1" aria-hidden="true">Email me</a>
+  <a class="btn btn-float btn-float-call" href="https://calendly.com/asamisdd/30min" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">Book call</a>
 
   <script>
     // The address is assembled here so it never sits in the HTML as plain text for scrapers.
@@ -448,16 +452,18 @@
 
     // Floating email button: on when the fact-box button is above the viewport and the contact band is not visible.
     (function () {
-      var float = document.querySelector('.btn-float');
+      var floats = document.querySelectorAll('.btn-float'), float = floats[0];
       var anchor = document.querySelector('.spread .btn');
       var contact = document.getElementById('contact');
       if (!float || !anchor || !contact || !('IntersectionObserver' in window)) return;
       var anchorGone = false, contactSeen = false;
       function update() {
         var on = anchorGone && !contactSeen;
-        float.classList.toggle('is-on', on);
-        float.setAttribute('aria-hidden', on ? 'false' : 'true');
-        float.tabIndex = on ? 0 : -1;
+        floats.forEach(function (f) {
+          f.classList.toggle('is-on', on);
+          f.setAttribute('aria-hidden', on ? 'false' : 'true');
+          f.tabIndex = on ? 0 : -1;
+        });
       }
       new IntersectionObserver(function (es) {
         es.forEach(function (e) { anchorGone = !e.isIntersecting && e.boundingClientRect.top < 0; });
