@@ -389,8 +389,8 @@ details > .wins { padding-bottom: 8px; }
 /* tools: spec plates (yellow name strip, Stack / Built rows, description) */
 .tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 29px; row-gap: 0; }
 /* subgrid: name strips share a row track so they line up; spec + description (.tool-body) sit top-aligned below; one 16px inset */
-.tool { min-width: 0; border-top: 3px solid var(--ink); display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 0; margin-bottom: 32px; }
-.tool-head { background: var(--data); border-radius: 0 0 var(--radius) var(--radius); /* top stays square under the 3px ink rule */ padding: 14px 16px 12px; font: 900 clamp(20px, 1.7vw, 24px)/1.08 var(--sans); font-stretch: 112%; text-transform: uppercase;
+.tool { min-width: 0; display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 0; margin-bottom: 32px; }
+.tool-head { background: var(--data); border-radius: var(--radius); padding: 14px 16px 12px; font: 900 clamp(20px, 1.7vw, 24px)/1.08 var(--sans); font-stretch: 112%; text-transform: uppercase;
   display: flex; align-items: flex-start; }
 .tool-spec { padding: 0 16px; display: grid; grid-template-columns: auto 1fr; margin: 0; border-bottom: 1px solid var(--hair); }
 .tool-spec dt, .tool-spec dd { margin: 0; padding: 8px 0; border-top: 1px solid var(--hair); }
@@ -399,10 +399,6 @@ details > .wins { padding-bottom: 8px; }
 .tool-spec dd { font: 700 13px/1.4 var(--sans); font-stretch: 85%; text-transform: uppercase; letter-spacing: .05em; color: var(--soft); }
 .tool-desc { padding: 0 16px; margin-top: 13px; font-size: 17px; line-height: 1.55; }
 
-/* quotes */
-.quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 56px; }
-.pull blockquote { font: 600 27px/1.3 var(--serif); text-wrap: balance; }
-.pull figcaption { font: 500 15px/1.45 var(--sans); margin-top: 14px; }
 
 /* ---------- contact ---------- */
 .close { --ink: #161616; --paper: #f3f5f6; --red: #c81d32; background: var(--close-bg); color: var(--paper); padding: 72px 0 88px; }
@@ -451,11 +447,9 @@ details > .wins { padding-bottom: 8px; }
   }
   .deck { margin-top: 0; font-size: 19px; }
   .spread-art { margin-top: 0; }
-  .quotes { grid-template-columns: minmax(0, 1fr); }
   .tools { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ledger article { grid-template-columns: minmax(0, 1fr); gap: 14px; padding: 24px 0; }
   .role { grid-template-columns: minmax(0, 1fr); gap: 10px; }
-  .pull blockquote { font-size: 23px; }
   .close h2 { font-size: clamp(30px, 8.4vw, 44px); }
   .band-title { font-size: clamp(28px, 7.6vw, 40px); }
 }
@@ -550,4 +544,24 @@ li:hover > .game-icon { transform: translateY(-3px) rotate(-2deg); box-shadow: 0
   .nav-resume { padding: 10px 4px; }
   .data { padding-left: 18px; padding-right: 18px; }
   .btn-row .btn { white-space: nowrap; font-size: clamp(13px, 4.3vw, 17px); letter-spacing: .03em; padding-left: 6px; padding-right: 6px; }
+}
+
+/* References (Sami, 2026-11-11; panel Round 14 option B): Highlights ledger grammar, who first, then the quote */
+.refs-title { font: 800 14px/1 var(--sans); font-stretch: 112%; text-transform: uppercase; letter-spacing: .06em; color: var(--soft); margin-bottom: 22px; }
+.refs figure { display: grid; grid-template-columns: minmax(0, 3.3fr) minmax(0, 8fr); gap: 10px 64px; padding: 26px 0 28px; border-bottom: 1px solid var(--hair); }
+.refs figure:first-of-type { padding-top: 0; }
+.refs .who b { display: block; font: 800 23px/1.2 var(--sans); font-stretch: 105%; }
+.refs .who b a { color: var(--ink); text-decoration-color: color-mix(in srgb, var(--ink) 35%, transparent); }
+.refs .who b a:hover { text-decoration-color: var(--red); }
+.refs .who span { display: block; margin-top: 8px; font: 500 15px/1.4 var(--sans); color: var(--soft); }
+.refs .who em { display: block; margin-top: 10px; font: 700 14px/1.3 var(--sans); font-style: normal; font-stretch: 85%; text-transform: uppercase; letter-spacing: .04em; color: var(--red); }
+.refs blockquote { font: 400 clamp(18px, 1.45vw, 21px)/1.5 var(--serif); text-wrap: pretty; }
+.refs blockquote strong { font-weight: 600; }
+/* big red opening mark hangs in the column gap, level with the first line (phones: in a 36px indent); the text carries no quote characters */
+.refs blockquote { position: relative; }
+.refs blockquote::before { content: "\201C"; position: absolute; left: -48px; top: -14px; font: 600 88px/1 var(--serif); color: var(--red); pointer-events: none; }
+@media (max-width: 980px) {
+  .refs figure { grid-template-columns: minmax(0, 1fr); }
+  .refs blockquote { padding-left: 36px; }
+  .refs blockquote::before { left: -4px; top: -10px; font-size: 72px; }
 }

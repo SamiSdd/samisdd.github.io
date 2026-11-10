@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=78">
+  <link rel="stylesheet" href="styles.css?v=86">
 </head>
 <body>
   <div class="wrap">
@@ -155,6 +155,26 @@
             </div>
           </article>
         </div>
+      </section>
+
+      <section class="band refs" aria-labelledby="refs-title">
+        <h2 class="refs-title" id="refs-title">From the people I worked with</h2>
+        <figure>
+          <figcaption class="who">
+            <b><a href="https://www.linkedin.com/in/james-kucera-2168a02b3/" target="_blank" rel="noopener">James Kucera</a></b>
+            <span>COO, Tollan Universe · Former Head of Mobile, Bandai Namco USA</span>
+            <em>40 years in games · 100+ titles shipped</em>
+          </figcaption>
+          <blockquote>I’ve worked with Sami at Big Wolf Games and Tollan Universe. He pairs deep engineering expertise with strong technical leadership, and he turns ambitious ideas into successful products. <strong>I’d confidently recommend him for senior technology leadership roles.</strong></blockquote>
+        </figure>
+        <figure>
+          <figcaption class="who">
+            <b><a href="https://www.linkedin.com/in/muhammad-ahmed-siddiqui-cissp-4111b558/" target="_blank" rel="noopener">Muhammad Ahmed Siddiqui</a></b>
+            <span>Co-Founder &amp; President, Big Wolf Games · Founder, Nybble Tech</span>
+            <em>13 years working together · 2 companies</em>
+          </figcaption>
+          <blockquote>Sami was one of my engineers at Nybble Tech and later led the engineering team at Big Wolf Games. His technical skill, ownership and commitment to quality always stood out. <strong>I watched him grow into a technical leader, and I’d gladly work with him again.</strong></blockquote>
+        </figure>
       </section>
 
       <section class="band games" id="games">
@@ -538,6 +558,18 @@
           cancelAnimationFrame(raf); v.muted = true; setLevel(0);
         }
       });
+      // Pause once the whole video has scrolled out of view (saves CPU and battery); play again when any part is back.
+      // With sound on, the music fades out before the pause and fades back in on return, instead of cutting.
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (es) {
+          if (es[0].isIntersecting) {
+            var p = v.play(); if (p && p.catch) p.catch(function () {});
+            if (on) fade(1, 900);
+          } else if (on) {
+            fade(0, 350, function () { if (on) v.pause(); });
+          } else v.pause();
+        }, { threshold: 0 }).observe(v);
+      }
     })();
     // Theme toggle: flips light/dark; picking the OS's own theme clears the stored choice so the page follows the OS again.
     // With View Transitions the new theme wipes in from top left to bottom right (CSS ::view-transition-new); otherwise it switches at once.
