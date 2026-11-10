@@ -69,7 +69,7 @@ em { font-style: italic; }
 }
 .spread-head {
   grid-area: head;
-  font: 800 clamp(42px, 4.6vw, 78px)/1 var(--sans); font-stretch: 112%; letter-spacing: -.01em;
+  font: 800 clamp(38px, 4.1vw, 68px)/1 var(--sans); font-stretch: 112%; letter-spacing: -.01em;
 }
 .spread-deck { grid-area: deck; }
 .deck { font-size: 21px; line-height: 1.5; max-width: 60ch; margin: 22px 0 10px; }
@@ -370,7 +370,7 @@ details > .wins { padding-bottom: 8px; }
 
 /* ---------- contact ---------- */
 .close { background: var(--ink); color: var(--paper); padding: 72px 0 88px; }
-.close h2 { font: 800 clamp(40px, 5vw, 78px)/1 var(--sans); font-stretch: 112%; letter-spacing: .005em; text-transform: uppercase; max-width: 16ch; }
+.close h2 { font: 800 clamp(36px, 4.2vw, 64px)/1 var(--sans); font-stretch: 112%; letter-spacing: .005em; text-transform: uppercase; max-width: 16ch; }
 .close p { max-width: 58ch; font-size: 20px; margin: 20px 0 28px; }
 /* closing band: "What I'll do on your team" (Sami, 2026-11-10, backlog #5) */
 .close-plan { max-width: 60ch; margin: 24px 0 32px; }
@@ -390,7 +390,7 @@ details > .wins { padding-bottom: 8px; }
 /* wide screens: headline on the left, pitch and actions on the right, bottoms aligned */
 @media (min-width: 981px) {
   .close .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "head text" "head cta"; column-gap: 56px; align-items: end; }
-  .close h2 { grid-area: head; }
+  .close h2 { grid-area: head; align-self: center; }
   .close p, .close-plan { grid-area: text; margin-top: 0; }
   .close-cta { grid-area: cta; }
 }
