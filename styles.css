@@ -541,3 +541,13 @@ li:hover > .game-icon { transform: translateY(-3px) rotate(-2deg); box-shadow: 0
   from { -webkit-mask-position: 100% 100%; mask-position: 100% 100%; }
   to   { -webkit-mask-position: 0 0; mask-position: 0 0; }
 }
+
+/* small phones (320-399px): header and badge buttons stay on one line (Sami, 2026-11-11) */
+.tab { white-space: nowrap; }
+@media (max-width: 399px) {
+  .folio-actions { gap: 10px; }
+  .nav-resume-label { display: none; } /* icon only; the link keeps its aria-label */
+  .nav-resume { padding: 10px 4px; }
+  .data { padding-left: 18px; padding-right: 18px; }
+  .btn-row .btn { white-space: nowrap; font-size: clamp(13px, 4.3vw, 17px); letter-spacing: .03em; padding-left: 6px; padding-right: 6px; }
+}
